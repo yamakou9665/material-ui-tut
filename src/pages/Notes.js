@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import Container from "@mui/material/Container";
 import NoteCard from "../components/NoteCard"
@@ -16,7 +15,7 @@ export default function Notes() {
 
   const handleDelete = async (id) => {
     await axios.delete('http://localhost:8000/notes/'+id)
-    const newNotes = notes.filter(note => note.id != id)
+    const newNotes = notes.filter(note => note.id !== id)
     setNotes(newNotes)
   }
 
