@@ -6,11 +6,13 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
-import { makeStyles } from "@mui/styles";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import { FormControl } from "@mui/material";
+import axios from "axios"
+import { useHistory } from 'react-router-dom'
+
 
 /**
  * これはv4までの書き方
@@ -44,6 +46,8 @@ export default function Create() {
   const [titleError, setTitleError] = useState(false);
   const [detailError, setDetailError] = useState(false);
   const [category, setCategory] = useState("todos");
+  const history = useHistory()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setTitleError(false);
@@ -57,7 +61,14 @@ export default function Create() {
       setDetailError(true);
     }
     if (title && detail) {
-      console.log(title, detail, category);
+      const body = {
+        category: category,
+        details: detail,
+        title: title
+
+      }
+      axios.post("http://localhost:8000/notes", body)
+      .then(()=>history.push("/"))
     }
   };
   return (
