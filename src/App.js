@@ -8,9 +8,9 @@ import Layout from './components/Layout'
 
 const theme = createTheme({
   palette: {
-    // primary: {
-    //   main: "#fefefe"
-    // },
+    primary: {
+      main: "#fefefe"
+    },
     secondary: purple,
   },
   typography: {
